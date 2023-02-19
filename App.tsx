@@ -6,14 +6,8 @@
  */
 
 import React, {useState} from 'react';
-import {
-  View,
-  TextInput,
-  Text,
-  Button,
-  StyleSheet,
-  FlatList,
-} from 'react-native';
+import {View, TextInput, Button, StyleSheet, FlatList} from 'react-native';
+import GoalItem from './components/GoalItem';
 
 function App(): JSX.Element {
   const [enteredGoalText, setEnteredGoalText] = useState('');
@@ -45,14 +39,8 @@ function App(): JSX.Element {
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
-          renderItem={itemData => (
-            <View style={styles.goalItem}>
-              <Text style={styles.goalText}>{itemData.item.text}</Text>
-            </View>
-          )}
-          keyExtractor={item => {
-            return item.id;
-          }}
+          renderItem={itemData => <GoalItem text={itemData.item.text} />}
+          keyExtractor={item => item.id}
           alwaysBounceVertical={false}
         />
       </View>
