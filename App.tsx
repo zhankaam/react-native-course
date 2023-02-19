@@ -6,17 +6,28 @@
  */
 
 import React, {useState} from 'react';
-import {View, TextInput, Text, Button, StyleSheet} from 'react-native';
+import {
+  View,
+  TextInput,
+  Text,
+  Button,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
 
 function App(): JSX.Element {
   const [enteredGoalText, setEnteredGoalText] = useState('');
+  const [courseGoals, setCourseGoals] = useState<string[]>([]);
 
   function goalInputHandler(enteredText: string) {
     setEnteredGoalText(enteredText);
   }
 
   function addGoalHandler() {
-    console.log(enteredGoalText);
+    setCourseGoals(currentCourseGoals => [
+      ...currentCourseGoals,
+      enteredGoalText,
+    ]);
   }
 
   return (
@@ -30,7 +41,13 @@ function App(): JSX.Element {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <Text>List of goals...</Text>
+        <ScrollView>
+          {courseGoals.map(goal => (
+            <View key={goal} style={styles.goalItem}>
+              <Text style={styles.goalText}>{goal}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -60,6 +77,15 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5,
+  },
+  goalItem: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: '#5e0acc',
+  },
+  goalText: {
+    color: 'white',
   },
 });
 
