@@ -10,6 +10,7 @@ import {View, StyleSheet, FlatList} from 'react-native';
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
+// 019
 function App(): JSX.Element {
   const [courseGoals, setCourseGoals] = useState<
     Record<'text' | 'id', string>[]
@@ -22,13 +23,25 @@ function App(): JSX.Element {
     ]);
   }
 
+  function deleteItemHandler(id: string) {
+    setCourseGoals(currentCourseGoals =>
+      currentCourseGoals.filter(goal => goal.id !== id),
+    );
+  }
+
   return (
     <View style={styles.appContainer}>
       <GoalInput onAddGoal={addGoalHandler} />
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
-          renderItem={itemData => <GoalItem text={itemData.item.text} />}
+          renderItem={itemData => (
+            <GoalItem
+              id={itemData.item.id}
+              text={itemData.item.text}
+              onDeleteItem={deleteItemHandler}
+            />
+          )}
           keyExtractor={item => item.id}
           alwaysBounceVertical={false}
         />
