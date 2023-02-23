@@ -2,7 +2,11 @@ import React, {useState} from 'react';
 import {Alert, StyleSheet, TextInput, View} from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 
-function StartGameScreen() {
+type PropsType = {
+  onPickNumber: (pickedNumber: number) => void;
+};
+
+function StartGameScreen({onPickNumber}: PropsType) {
   const [enteredNumber, setEnteredNumber] = useState('');
 
   function numberInputHandler(enteredText: string) {
@@ -22,9 +26,10 @@ function StartGameScreen() {
         'Number has to be a number between 0 and 99.',
         [{text: 'Okay', style: 'destructive', onPress: resetInputHandler}],
       );
+      return;
     }
 
-    console.log('Valid number!');
+    onPickNumber(chosenNumber);
   }
 
   return (
