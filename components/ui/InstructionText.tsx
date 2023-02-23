@@ -1,13 +1,14 @@
 import React, {ReactNode} from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
 import {COLORS} from '../../constants/colors';
 
 type PropsType = {
   children: ReactNode;
+  style?: StyleProp<TextStyle>;
 };
 
-function InstructionText({children}: PropsType) {
-  return <Text style={styles.intructionText}>{children}</Text>;
+function InstructionText({children, style}: PropsType) {
+  return <Text style={[styles.intructionText, style]}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({
