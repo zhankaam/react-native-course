@@ -5,6 +5,9 @@ import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+Ionicons.loadFont().then();
 
 function generateRandomBetween(
   min: number,
@@ -74,12 +77,12 @@ function GameScreen({userNumber, onGameOver}: PropsType) {
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={() => nextGuessHandler('lower')}>
-              -
+              <Ionicons name="md-remove" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={() => nextGuessHandler('greater')}>
-              +
+              <Ionicons name="md-add" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
