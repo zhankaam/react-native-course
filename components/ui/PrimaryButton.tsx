@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {COLORS} from '../constants/colors';
+import {COLORS} from '../../constants/colors';
 
 type PropsType = {
   children: ReactNode;
