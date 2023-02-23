@@ -6,21 +6,22 @@
  */
 
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
 
 function App(): JSX.Element {
   return (
-    <View style={styles.rootScreen}>
+    <LinearGradient colors={['#4e0329', '#ddb52f']} style={styles.rootScreen}>
       <StartGameScreen />
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   rootScreen: {
     flex: 1,
-    backgroundColor: '#ddb52f',
+    // backgroundColor: '#ddb52f',
   },
 });
 
