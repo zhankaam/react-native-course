@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   intructionText: {
     color: COLORS.accent500,
     fontSize: 24,
+    fontFamily: 'OpenSans-Regular',
   },
 });
 
