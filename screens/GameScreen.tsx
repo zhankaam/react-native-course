@@ -7,6 +7,7 @@ import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {FlatList} from 'react-native';
+import GuessLogItem from '../components/game/GuessLogItem';
 
 Ionicons.loadFont().then();
 
@@ -74,6 +75,8 @@ function GameScreen({userNumber, onGameOver}: PropsType) {
     setGuessRounds(prevGuessRounds => [...prevGuessRounds, randomNumber]);
   }
 
+  const guessRoundsListLength = guessRounds.length;
+
   return (
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
@@ -96,12 +99,14 @@ function GameScreen({userNumber, onGameOver}: PropsType) {
         </View>
       </Card>
       <View>
-        {/* {guessRounds.map(guessRound => (
-          <Text key={guessRound}>{guessRound}</Text>
-        ))} */}
         <FlatList
           data={guessRounds}
-          renderItem={({item}) => <Text>{item}</Text>}
+          renderItem={({item, index}) => (
+            <GuessLogItem
+              roundNumber={guessRoundsListLength - index}
+              guess={item}
+            />
+          )}
           keyExtractor={item => item.toString()}
         />
       </View>
