@@ -23,8 +23,9 @@ function App(): JSX.Element {
     setGameIsOver(false);
   }
 
-  function gameOverHandler() {
+  function gameOverHandler(numberOfRounds: number) {
     setGameIsOver(true);
+    setGuessRounds(numberOfRounds);
   }
 
   function startNewGameHandler() {

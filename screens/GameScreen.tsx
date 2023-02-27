@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Alert, Text} from 'react-native';
+import {StyleSheet, View, Alert} from 'react-native';
 import NumberContainer from '../components/game/NumberContainer';
 import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
@@ -27,7 +27,7 @@ function generateRandomBetween(
 
 type PropsType = {
   userNumber: number;
-  onGameOver: () => void;
+  onGameOver: (numberOfRounds: number) => void;
 };
 
 let minBoundry = 1;
@@ -40,9 +40,9 @@ function GameScreen({userNumber, onGameOver}: PropsType) {
 
   useEffect(() => {
     if (currentGuess === userNumber) {
-      onGameOver();
+      onGameOver(guessRounds.length);
     }
-  }, [currentGuess, onGameOver, userNumber]);
+  }, [currentGuess, guessRounds.length, onGameOver, userNumber]);
 
   useEffect(() => {
     minBoundry - 1;
@@ -98,7 +98,7 @@ function GameScreen({userNumber, onGameOver}: PropsType) {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.listContainer}>
         <FlatList
           data={guessRounds}
           renderItem={({item, index}) => (
@@ -127,6 +127,10 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+  listContainer: {
+    flex: 1,
+    padding: 16,
   },
 });
 
