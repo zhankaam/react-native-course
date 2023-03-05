@@ -6,6 +6,7 @@
  */
 
 import React, {useState} from 'react';
+import {StatusBar} from 'react-native';
 import {ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {COLORS} from './constants/colors';
@@ -52,17 +53,20 @@ function App(): JSX.Element {
   }
 
   return (
-    <LinearGradient
-      colors={[COLORS.primary700, COLORS.accent500]}
-      style={styles.rootScreen}>
-      <ImageBackground
-        source={require('./assets/images/background.png')}
-        resizeMode="cover"
-        style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}>
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+    <>
+      <StatusBar barStyle="light-content" />
+      <LinearGradient
+        colors={[COLORS.primary700, COLORS.accent500]}
+        style={styles.rootScreen}>
+        <ImageBackground
+          source={require('./assets/images/background.png')}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}>
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
