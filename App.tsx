@@ -6,20 +6,16 @@
  */
 
 import React from 'react';
-// import {View, Text, StyleSheet, StatusBar} from 'react-native';
 import CategoriesScreen from './screens/CategoriesScreen';
+import {StatusBar} from 'react-native/types';
 
 function App(): JSX.Element {
-  return <CategoriesScreen />;
+  return (
+    <>
+      <StatusBar barStyle="light-content" />
+      <CategoriesScreen />
+    </>
+  );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     background: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
 
 export default App;
