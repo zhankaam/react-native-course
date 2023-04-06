@@ -7,7 +7,7 @@
 
 import React from 'react';
 import CategoriesScreen from './screens/CategoriesScreen';
-import {StatusBar} from 'react-native/types';
+import {StatusBar} from 'react-native';
 
 function App(): JSX.Element {
   return (
