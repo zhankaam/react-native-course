@@ -15,7 +15,9 @@ type ItemDataType = {
 function CategoriesScreen({navigation}: any) {
   function renderCategoryItem(itemData: ItemDataType) {
     function pressHadler() {
-      navigation.navigate('MealsOverview');
+      navigation.navigate('MealsOverview', {
+        categoryId: itemData.item.id,
+      });
     }
 
     return (
