@@ -4,9 +4,10 @@ import React from 'react';
 type PropsType = {
   title: string;
   color: string;
+  onPress: () => void;
 };
 
-function CategoryGridTile({title, color}: PropsType) {
+function CategoryGridTile({title, color, onPress}: PropsType) {
   return (
     <View style={styles.gridItem}>
       <Pressable
@@ -14,7 +15,8 @@ function CategoryGridTile({title, color}: PropsType) {
         style={({pressed}) => [
           styles.button,
           pressed ? styles.buttonPressed : null,
-        ]}>
+        ]}
+        onPress={onPress}>
         <View style={[styles.innerContainer, {backgroundColor: color}]}>
           <Text style={styles.title}>{title}</Text>
         </View>
