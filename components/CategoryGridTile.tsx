@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 16,
     height: 150,
+    borderRadius: 8,
     elevation: 4,
     backgroundColor: 'white',
     shadowColor: 'black',
