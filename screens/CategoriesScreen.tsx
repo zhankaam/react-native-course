@@ -3,16 +3,19 @@ import {FlatList} from 'react-native';
 
 import {CATEGORIES} from '../data/dummy-data';
 import CategoryGridTile from '../components/CategoryGridTile';
+import {ICategory} from '../models/category';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../App';
 
 type ItemDataType = {
-  item: {
-    title: string;
-    color: string;
-    id: string;
-  };
+  item: ICategory;
 };
 
-function CategoriesScreen({navigation}: any) {
+type PropsType = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'MealsCategories'>;
+};
+
+function CategoriesScreen({navigation}: PropsType) {
   function renderCategoryItem(itemData: ItemDataType) {
     function pressHadler() {
       navigation.navigate('MealsOverview', {

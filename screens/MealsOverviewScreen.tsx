@@ -3,8 +3,21 @@ import {StyleSheet, View, FlatList} from 'react-native';
 
 import {CATEGORIES, MEALS} from '../data/dummy-data';
 import MealItem from '../components/MealItem';
+import {IMeal} from '../models/meal';
+import {RouteProp} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../App';
 
-const MealsOverviewScreen = ({route, navigation}: any) => {
+type ItemDataType = {
+  item: IMeal;
+};
+
+type PropsType = {
+  route: RouteProp<{params: {categoryId: string}}, 'params'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'MealsOverview'>;
+};
+
+const MealsOverviewScreen = ({route, navigation}: PropsType) => {
   // const route = useRoute();
   const {categoryId} = route.params;
 
@@ -22,7 +35,7 @@ const MealsOverviewScreen = ({route, navigation}: any) => {
     });
   }, [categoryId, navigation]);
 
-  function renderMealItem(itemData: any) {
+  function renderMealItem(itemData: ItemDataType) {
     const item = itemData.item;
 
     const mealItemProps = {
