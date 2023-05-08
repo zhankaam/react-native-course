@@ -24,7 +24,7 @@ function MealItem({
   const navigation = useNavigation<StackNavigation>();
 
   function pressHadler() {
-    navigation.navigate('MealDetailScreen', {
+    navigation.navigate('MealDetail', {
       mealId: id,
     });
   }

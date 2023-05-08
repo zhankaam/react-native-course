@@ -1,5 +1,5 @@
-import React from 'react';
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useLayoutEffect} from 'react';
+import {Button, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 
 import {MEALS} from '../data/dummy-data';
@@ -8,15 +8,29 @@ import MealDetails from '../components/MealDetails';
 import {Subtitle} from '../components/MealDetail/Subtitle';
 import {List} from '../components/MealDetail/List';
 import {RootStackParamList} from '../App';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 interface IProps {
-  route: RouteProp<RootStackParamList, 'MealDetailScreen'>;
+  route: RouteProp<RootStackParamList, 'MealDetail'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'MealsCategories'>;
 }
 
-const MealDetailScreen = ({route}: IProps) => {
+const MealDetailScreen = ({route, navigation}: IProps) => {
   const {mealId} = route.params;
 
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
+
+  const headerButtonPressHandler = useCallback(() => {
+    console.log('pressed');
+  }, []);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button title="Tap me!" onPress={headerButtonPressHandler} />
+      ),
+    });
+  }, [navigation, headerButtonPressHandler]);
 
   if (!selectedMeal) {
     return null;

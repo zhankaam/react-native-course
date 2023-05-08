@@ -16,7 +16,7 @@ import MealDetailScreen from './screens/MealDetailScreen';
 export type RootStackParamList = {
   MealsCategories: undefined;
   MealsOverview: {categoryId: string};
-  MealDetailScreen: {mealId: string};
+  MealDetail: {mealId: string};
 };
 export type StackNavigation = NavigationProp<RootStackParamList>;
 
@@ -41,7 +41,7 @@ function App(): JSX.Element {
             }}
           />
           <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
-          <Stack.Screen name="MealDetailScreen" component={MealDetailScreen} />
+          <Stack.Screen name="MealDetail" component={MealDetailScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
