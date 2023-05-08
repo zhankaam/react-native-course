@@ -1,5 +1,5 @@
 import React, {useCallback, useLayoutEffect} from 'react';
-import {Button, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 
 import {MEALS} from '../data/dummy-data';
@@ -9,6 +9,7 @@ import {Subtitle} from '../components/MealDetail/Subtitle';
 import {List} from '../components/MealDetail/List';
 import {RootStackParamList} from '../App';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {IconButton} from '../components/IconButton';
 
 interface IProps {
   route: RouteProp<RootStackParamList, 'MealDetail'>;
@@ -27,7 +28,11 @@ const MealDetailScreen = ({route, navigation}: IProps) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Button title="Tap me!" onPress={headerButtonPressHandler} />
+        <IconButton
+          icon="star"
+          color="white"
+          onPress={headerButtonPressHandler}
+        />
       ),
     });
   }, [navigation, headerButtonPressHandler]);
