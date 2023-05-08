@@ -1,11 +1,12 @@
 import React, {useLayoutEffect} from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
-
-import {CATEGORIES, MEALS} from '../data/dummy-data';
-import MealItem from '../components/MealItem';
-import {IMeal} from '../models/meal';
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+import {CATEGORIES, MEALS} from '../data/dummy-data';
+
+import MealItem from '../components/MealItem';
+import {IMeal} from '../models/meal';
 import {RootStackParamList} from '../App';
 
 type ItemDataType = {
@@ -13,7 +14,7 @@ type ItemDataType = {
 };
 
 type PropsType = {
-  route: RouteProp<{params: {categoryId: string}}, 'params'>;
+  route: RouteProp<RootStackParamList, 'MealsOverview'>;
   navigation: NativeStackNavigationProp<RootStackParamList, 'MealsOverview'>;
 };
 
