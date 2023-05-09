@@ -13,7 +13,7 @@ import {IconButton} from '../components/IconButton';
 
 interface IProps {
   route: RouteProp<RootStackParamList, 'MealDetail'>;
-  navigation: NativeStackNavigationProp<RootStackParamList, 'MealsCategories'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Drawer'>;
 }
 
 const MealDetailScreen = ({route, navigation}: IProps) => {
