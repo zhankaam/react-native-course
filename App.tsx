@@ -69,7 +69,12 @@ function App(): JSX.Element {
       <StatusBar barStyle="light-content" />
       <FavoritesContextProvider>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {backgroundColor: '#351401'},
+              headerTintColor: 'white',
+              contentStyle: {backgroundColor: '#3f2f25'},
+            }}>
             <Stack.Screen
               name="Drawer"
               component={DrawerNavigator}
