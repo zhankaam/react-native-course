@@ -16,6 +16,7 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import {FavoritesScreen} from './screens/FavoritesScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import FavoritesContextProvider from './store/context/favorites-context';
 
 export type RootStackParamList = {
   Drawer: undefined;
@@ -66,23 +67,28 @@ function App(): JSX.Element {
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Drawer"
-            component={DrawerNavigator}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
-          <Stack.Screen
-            name="MealDetail"
-            component={MealDetailScreen}
-            options={{title: 'About the Meal'}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <FavoritesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Drawer"
+              component={DrawerNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="MealsOverview"
+              component={MealsOverviewScreen}
+            />
+            <Stack.Screen
+              name="MealDetail"
+              component={MealDetailScreen}
+              options={{title: 'About the Meal'}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoritesContextProvider>
     </>
   );
 }
