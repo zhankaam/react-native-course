@@ -18,6 +18,8 @@ import {FavoritesScreen} from './screens/FavoritesScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FavoritesContextProvider from './store/context/favorites-context';
 
+Ionicons.loadFont();
+
 export type RootStackParamList = {
   Drawer: undefined;
   MealsOverview: {categoryId: string};
