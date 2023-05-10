@@ -7,6 +7,8 @@
 
 import React from 'react';
 import {StatusBar} from 'react-native';
+import {Provider} from 'react-redux';
+
 import {NavigationContainer, NavigationProp} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -16,7 +18,7 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import {FavoritesScreen} from './screens/FavoritesScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FavoritesContextProvider from './store/context/favorites-context';
+import {store} from './store/redux/store';
 
 Ionicons.loadFont();
 
@@ -69,7 +71,7 @@ function App(): JSX.Element {
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <FavoritesContextProvider>
+      <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
@@ -95,7 +97,7 @@ function App(): JSX.Element {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </FavoritesContextProvider>
+      </Provider>
     </>
   );
 }
