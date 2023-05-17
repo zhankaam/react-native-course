@@ -7,3 +7,5 @@ export const store = configureStore({
     favoriteMeals: favoritesReducer,
   },
 });
+
+export type RootStateType = ReturnType<typeof store.getState>;
