@@ -20,6 +20,8 @@ import {GlobalStyles} from './constants/styles';
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
+Ionicons.loadFont();
+
 function ExpensesOverview() {
   return (
     <BottomTabs.Navigator
