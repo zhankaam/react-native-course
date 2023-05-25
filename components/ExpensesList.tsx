@@ -1,12 +1,8 @@
-import {View, Text} from 'react-native';
+import {FlatList} from 'react-native';
 import React from 'react';
 
 const ExpensesList = () => {
-  return (
-    <View>
-      <Text>ExpensesList</Text>
-    </View>
-  );
+  return <FlatList />;
 };
 
 export default ExpensesList;
