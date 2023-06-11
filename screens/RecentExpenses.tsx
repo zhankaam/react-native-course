@@ -1,10 +1,6 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import ExpensesOutput from '../components/ExpensesOutput';
 
 export function RecentExpenses() {
-  return (
-    <View>
-      <Text>RecentExpenses</Text>
-    </View>
-  );
+  return <ExpensesOutput expensesPeriod="Last 7 days" />;
 }

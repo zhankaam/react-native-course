@@ -4,7 +4,6 @@ import ExpensesSummary from './ExpensesSummary';
 import ExpensesList from './ExpensesList';
 
 type PropsType = {
-  expenses: ExpenseDataType[];
   expensesPeriod: string;
 };
 
@@ -53,7 +52,7 @@ const ExpensesOutput: React.FC<PropsType> = ({expensesPeriod}) => {
   return (
     <View>
       <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
-      <ExpensesList />
+      <ExpensesList expenses={DUMMY_EXPENSES} />
     </View>
   );
 };
