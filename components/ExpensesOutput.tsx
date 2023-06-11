@@ -1,7 +1,8 @@
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import ExpensesSummary from './ExpensesSummary';
 import ExpensesList from './ExpensesList';
+import {GlobalStyles} from '../constants/styles';
 
 type PropsType = {
   expensesPeriod: string;
@@ -50,7 +51,7 @@ const DUMMY_EXPENSES = [
 // expenses,
 const ExpensesOutput: React.FC<PropsType> = ({expensesPeriod}) => {
   return (
-    <View>
+    <View style={styles.container}>
       <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
       <ExpensesList expenses={DUMMY_EXPENSES} />
     </View>
@@ -58,3 +59,11 @@ const ExpensesOutput: React.FC<PropsType> = ({expensesPeriod}) => {
 };
 
 export default ExpensesOutput;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
+    backgroundColor: GlobalStyles.colors.primary700,
+  },
+});
