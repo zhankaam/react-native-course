@@ -2,6 +2,9 @@ import React, {FC} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {GlobalStyles} from '../constants/styles';
 import {getFormattedDate} from '../util/date';
+import {useNavigation} from '@react-navigation/native';
+import {StackParamList} from '../App';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type PropsType = {
   description: string;
@@ -10,7 +13,10 @@ type PropsType = {
 };
 
 export const ExpenseItem: FC<PropsType> = ({description, amount, date}) => {
-  function expensePressHandler() {}
+  const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
+  function expensePressHandler() {
+    navigation.navigate('ManageExpense');
+  }
 
   return (
     <Pressable
