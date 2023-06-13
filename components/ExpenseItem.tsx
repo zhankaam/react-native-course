@@ -7,15 +7,18 @@ import {StackParamList} from '../App';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type PropsType = {
+  id: string;
   description: string;
   amount: number;
   date: Date;
 };
 
-export const ExpenseItem: FC<PropsType> = ({description, amount, date}) => {
+export const ExpenseItem: FC<PropsType> = ({id, description, amount, date}) => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
   function expensePressHandler() {
-    navigation.navigate('ManageExpense');
+    navigation.navigate('ManageExpense', {
+      expenseId: id,
+    });
   }
 
   return (

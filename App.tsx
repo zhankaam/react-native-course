@@ -20,7 +20,9 @@ import IconButton from './UI/IconButton';
 
 export type StackParamList = {
   ExpensesOverview: undefined;
-  ManageExpense: undefined;
+  ManageExpense: {
+    expenseId: string;
+  };
 };
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -42,7 +44,7 @@ function ExpensesOverview() {
           <IconButton
             icon="add"
             size={24}
-            color={tintColor}
+            color={tintColor || ''}
             onPress={() => navigation.navigate('ManageExpense')}
           />
         ),
