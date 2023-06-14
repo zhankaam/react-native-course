@@ -17,6 +17,7 @@ import {AllExpenses} from './screens/AllExpenses';
 import {ManageExpense} from './screens/ManageExpense';
 import {GlobalStyles} from './constants/styles';
 import IconButton from './UI/IconButton';
+import ExpensesContextProvider from './store/expenses-context';
 
 export type StackParamList = {
   ExpensesOverview: undefined;
@@ -79,26 +80,28 @@ function App(): JSX.Element {
   return (
     <>
       <StatusBar barStyle="default" />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: GlobalStyles.colors.primary500,
-            },
-            headerTintColor: 'white',
-          }}>
-          <Stack.Screen
-            name="ExpensesOverview"
-            component={ExpensesOverview}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="ManageExpense"
-            component={ManageExpense}
-            options={{title: 'Manage Expense', presentation: 'modal'}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ExpensesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: GlobalStyles.colors.primary500,
+              },
+              headerTintColor: 'white',
+            }}>
+            <Stack.Screen
+              name="ExpensesOverview"
+              component={ExpensesOverview}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="ManageExpense"
+              component={ManageExpense}
+              options={{title: 'Manage Expense', presentation: 'modal'}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ExpensesContextProvider>
     </>
   );
 }
