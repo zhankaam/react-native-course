@@ -7,15 +7,17 @@ import {
   TextInputProps,
   TextStyle,
   View,
+  ViewStyle,
 } from 'react-native';
 import {GlobalStyles} from '../../constants/styles';
 
 interface Props {
   label: string;
   textInputConfig?: TextInputProps;
+  style?: StyleProp<ViewStyle>;
 }
 
-function Input({label, textInputConfig}: Props) {
+function Input({label, style, textInputConfig}: Props) {
   const inputStyles = [styles.input] as Array<StyleProp<TextStyle>>;
 
   if (textInputConfig && textInputConfig.multiline) {
@@ -23,9 +25,9 @@ function Input({label, textInputConfig}: Props) {
   }
 
   return (
-    <View style={styles.inputContainer}>
+    <View style={[styles.inputContainer, style]}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput style={styles.input} {...textInputConfig} />
+      <TextInput style={inputStyles} {...textInputConfig} />
     </View>
   );
 }
