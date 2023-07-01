@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Input from './Input';
 import Button from '../../UI/Button';
+import {getFormattedDate} from '../../util/date';
 
 export type ExpenseDataType = {
   amount: number;
@@ -13,13 +14,19 @@ type PropsType = {
   onCancel: () => void;
   onSubmit: (expenseData: ExpenseDataType) => void;
   submitButtonLabel: string;
+  defaultValues: ExpenseDataType;
 };
 
-function ExpenseForm({onCancel, onSubmit, submitButtonLabel}: PropsType) {
+function ExpenseForm({
+  onCancel,
+  onSubmit,
+  submitButtonLabel,
+  defaultValues,
+}: PropsType) {
   const [inputValues, setInputValues] = useState({
-    amount: '',
-    date: '',
-    description: '',
+    amount: defaultValues ? defaultValues.amount.toString() : '',
+    date: defaultValues ? getFormattedDate(defaultValues.date) : '',
+    description: defaultValues ? defaultValues.description : '',
   });
 
   function inputChangedHandler(inputIdentifier: string, enteredValue: string) {
