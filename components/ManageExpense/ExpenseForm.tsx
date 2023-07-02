@@ -15,7 +15,7 @@ type PropsType = {
   onCancel: () => void;
   onSubmit: (expenseData: ExpenseDataType) => void;
   submitButtonLabel: string;
-  defaultValues: ExpenseDataType;
+  defaultValues?: ExpenseDataType;
 };
 
 function ExpenseForm({

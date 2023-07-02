@@ -8,6 +8,7 @@ import {ExpensesContext} from '../store/expenses-context';
 import ExpenseForm, {
   ExpenseDataType,
 } from '../components/ManageExpense/ExpenseForm';
+import {storeExpense} from '../util/http';
 
 export function ManageExpense({
   route,
@@ -41,6 +42,7 @@ export function ManageExpense({
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, expenseData);
     } else {
+      storeExpense(expenseData);
       expensesCtx.addExpense(expenseData);
     }
     navigation.goBack();
