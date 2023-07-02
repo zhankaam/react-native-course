@@ -17,11 +17,11 @@ export function RecentExpenses() {
   useEffect(() => {
     async function fetchExpenses() {
       const expenses = await getExpenses();
-      console.log({expenses});
+      expensesCtx.setExpenses(expenses);
     }
 
     fetchExpenses();
-  }, []);
+  }, [expensesCtx]);
 
   return (
     <ExpensesOutput

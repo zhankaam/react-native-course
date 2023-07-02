@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {ExpenseDataType} from '../components/ManageExpense/ExpenseForm';
+import {ExpenseDataType} from '../store/expenses-context';
 
 const BACKEND_URL =
   'https://react-native-course-6a569-default-rtdb.firebaseio.com';
 
-export function storeExpense(expenseData: ExpenseDataType) {
+export function storeExpense(expenseData: Omit<ExpenseDataType, 'id'>) {
   axios.post(BACKEND_URL + '/expenses.json', expenseData);
 }
 
@@ -22,5 +22,5 @@ export async function getExpenses() {
     expenses.push(expenseObj);
   }
 
-  return expenses;
+  return expenses as ExpenseDataType[];
 }
