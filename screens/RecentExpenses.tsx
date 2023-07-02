@@ -1,10 +1,12 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import ExpensesOutput from '../components/ExpensesOutput';
 import {ExpensesContext} from '../store/expenses-context';
 import {getDateMinusDays} from '../util/date';
 import {getExpenses} from '../util/http';
+import LoadingOverlay from '../UI/LoadingOverlay';
 
 export function RecentExpenses() {
+  const [isFetching, setIsFetching] = useState(true);
   const expensesCtx = useContext(ExpensesContext);
 
   const recentExpenses = expensesCtx.expenses.filter(expense => {
@@ -16,12 +18,19 @@ export function RecentExpenses() {
 
   useEffect(() => {
     async function fetchExpenses() {
+      setIsFetching(true);
       const expenses = await getExpenses();
+      setIsFetching(false);
       expensesCtx.setExpenses(expenses);
     }
 
     fetchExpenses();
-  }, [expensesCtx]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (isFetching) {
+    return <LoadingOverlay />;
+  }
 
   return (
     <ExpensesOutput
