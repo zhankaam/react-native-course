@@ -38,12 +38,12 @@ export function ManageExpense({
     navigation.goBack();
   }
 
-  function confirmHandler(expenseData: ExpenseDataType) {
+  async function confirmHandler(expenseData: ExpenseDataType) {
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, expenseData);
     } else {
-      storeExpense(expenseData);
-      expensesCtx.addExpense(expenseData);
+      const id = await storeExpense(expenseData);
+      expensesCtx.addExpense({...expenseData, id});
     }
     navigation.goBack();
   }

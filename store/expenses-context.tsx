@@ -69,7 +69,7 @@ export type ExpenseDataType = {
 export const ExpensesContext = createContext({
   expenses: [] as ExpenseDataType[],
   setExpenses: (expenses: ExpenseDataType[]) => {},
-  addExpense: ({description, amount, date}: Omit<ExpenseDataType, 'id'>) => {},
+  addExpense: ({description, amount, date}: ExpenseDataType) => {},
   deleteExpense: (id: string) => {},
   updateExpense: (
     id: string,
@@ -80,10 +80,11 @@ export const ExpensesContext = createContext({
 function expensesReducer(state: ExpenseDataType[], action: any) {
   switch (action.type) {
     case 'ADD':
-      const id = new Date().toString() + Math.random().toString();
-      return [{...action.payload, id}, ...state];
+      return [action.payload, ...state];
     case 'SET':
-      return action.payload;
+      const inverted = action.payload.reverse();
+
+      return inverted;
     case 'UPDATE':
       const updatedableExpenseIndex = state.findIndex(
         expense => expense.id === action.payload.id,
@@ -107,7 +108,7 @@ type ProviderType = {
 function ExpensesContextProvider({children}: ProviderType) {
   const [expensesState, dispatch] = useReducer(expensesReducer, []);
 
-  function addExpense(expenseData: Omit<ExpenseDataType, 'id'>) {
+  function addExpense(expenseData: ExpenseDataType) {
     dispatch({type: 'ADD', payload: expenseData});
   }
 
