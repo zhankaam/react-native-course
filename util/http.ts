@@ -2,7 +2,7 @@ import axios from 'axios';
 import {ExpenseDataType} from '../store/expenses-context';
 
 const BACKEND_URL =
-  'https://react-native-course-6a569-default-rtdb.firebaseio.com';
+  'https://react-native-course-6a569-default-rtdb.firebaseiocom';
 
 export async function storeExpense(expenseData: Omit<ExpenseDataType, 'id'>) {
   const response = await axios.post(
