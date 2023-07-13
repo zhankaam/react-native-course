@@ -13,17 +13,11 @@ export type AuthFormDataType = Record<
 >;
 
 type PropsType = {
-  isLogin: boolean;
-  onAuthenticate: ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => void;
+  isLogin?: boolean;
+  onAuthenticate: (data: Record<'email' | 'password', string>) => void;
 };
 
-function AuthContent({isLogin, onAuthenticate}: PropsType) {
+function AuthContent({isLogin = false, onAuthenticate}: PropsType) {
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
     password: false,

@@ -3,6 +3,8 @@ import React from 'react';
 import {Pressable, StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/ionicons';
 
+Ionicons.loadFont();
+
 type PropsType = {
   icon: any;
   color: string;
