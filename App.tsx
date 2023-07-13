@@ -1,5 +1,6 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {StatusBar} from 'react-native';
+import RNBootSplash from 'react-native-bootsplash';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -9,6 +10,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import {Colors} from './constants/styles';
 import AuthContextProvider, {AuthContext} from './store/auth-context';
 import IconButton from './components/ui/IconButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -71,12 +73,33 @@ function Navigation() {
   );
 }
 
+function Root() {
+  const authCtx = useContext(AuthContext);
+
+  useEffect(() => {
+    async function fetchToken() {
+      const storedToken = await AsyncStorage.getItem('token');
+
+      if (storedToken) {
+        authCtx.authenticate(storedToken);
+      }
+    }
+
+    fetchToken().finally(async () => {
+      await RNBootSplash.hide({fade: true, duration: 500});
+      console.log('BootSplash has been hidden successfully');
+    });
+  }, [authCtx]);
+
+  return <Navigation />;
+}
+
 export default function App() {
   return (
     <>
       <StatusBar barStyle="light-content" />
       <AuthContextProvider>
-        <Navigation />
+        <Root />
       </AuthContextProvider>
     </>
   );
